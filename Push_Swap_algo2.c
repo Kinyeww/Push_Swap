@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 void	pb
 
 void	rr // ra + rb

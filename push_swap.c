@@ -2,15 +2,14 @@
 
 int	ft_strlen(char *str)
 {
-	int len = 0;
-	while (str[len] != '\0')
-		len++;
-	return len;
+	int	value;
+
+
 }
 
 l_list	push_swap(int value)
 {
-
+	
 }
 
 int	valid_or_not(char *str) //handle not integer, exceed limit and duplicates
@@ -64,7 +63,6 @@ int	main(int argc,char **argv)
 	ft_printerror(valid_or_not(argv[i]));
 	while (i < argc)
 	{
-
 		i++;
 	}
 	return (0);
