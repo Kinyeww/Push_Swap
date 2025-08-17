@@ -1,3 +1,6 @@
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,6 +12,7 @@ typedef struct node
     int value;
     int index;
     // This is a pointer to another 'struct node'
-    struct node *nextNode;    
+    struct node *nextNode;  
+    struct node *prevNode;  
 // So from now on, instead of typing 'struct node', we can just write 'l_list'
 } l_list;

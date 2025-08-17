@@ -15,10 +15,10 @@ void	assign_index(l_list *stack_a)
 		{
 			if (current->value > compare->value)
 				rank++;
-			compare = compare->next;
+			compare = compare->nextNode;
 		}
 		current->index = rank;
-		current = current->next;
+		current = current->nextNode;
 	}
 }
 
