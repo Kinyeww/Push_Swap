@@ -2,11 +2,11 @@
 
 void	ra(l_list *stack_a)
 {
-	l_list  *first_node;
-	l_list  *last_node;
+	l_list	*first_node;
+	l_list	*last_node;
 
 	if (!stack_a || !stack_a->head || !stack_a->head->nextNode)
-		return;
+		return ;
 	first_node = stack_a->head;
 	last_node = find_last_node(stack_a->head);
 	stack_a->head = first_node->nextNode;
@@ -22,7 +22,7 @@ void	rra(l_list *stack_a)
 
 void	rb(l_list *stack_b)
 {
-	l_list  *first_node;
+	l_list	*first_node;
 	l_list	*last_node;
 
 	if (!stack_b || !stack_b->head || !stack_b->nextNode)

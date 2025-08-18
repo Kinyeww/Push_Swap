@@ -4,7 +4,7 @@ void	assign_index(l_list *stack_a)
 {
 	l_list	*current;
 	l_list	*compare;
-	int			rank;
+	int		rank;
 
 	current = stack_a;
 	while (current)
@@ -22,9 +22,17 @@ void	assign_index(l_list *stack_a)
 	}
 }
 
-int	main(int argc,char **argv)
+int	push_swap(int argc, char **argv)
 {
-	int i;
+	l_list	**stack_a;
+	l_list	**stack_b;
+
+	
+}
+
+int	main(int argc, char **argv)
+{
+	int	i;
 	int	result;
 
 	if (argc < 2)
@@ -34,9 +42,8 @@ int	main(int argc,char **argv)
 	}
 	i = 1;
 	ft_printerror(valid_or_not(argv[i]));
-	while (i < argc)
-	{
-		i++;
-	}
-	return (0);
+	if (push_swap(argc, argv))
+		return (0);
+	else
+		return (1);
 }
