@@ -1,0 +1,8 @@
+1. Input validation and parsing
+    - Make sure every argument is a valid integer.
+    - Handle signs (+ and -), spaces, and multiple
+      numbers in one argument.
+    - Check for duplicates.
+    - Check for overflow/underflow (INT_MIN / INT_MAX).
+    - Convert them into a stack (linked list or array)
+      representing stack A. Stack B starts empty.
