@@ -45,8 +45,24 @@ void    free_tokens(char **arr)
     free(arr);
 }
 
+int	ft_checkall(char **arr) // convert all checked strings into integer and check no dupes and no overflow
+{// check overflows and then store into linked list and only check for dupes
+	int	i;
+	int	j;
+	long	num;
 
-char**	ft_tokenise(int argc, char **argv)
+	i = 0;
+	while (arr[i])
+	{
+		num = ft_atoi(arr[i]);
+		if (num < INT_MIN || num > INT_MAX)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	ft_tokenise(int argc, char **argv)
 {
 	char	**tokens;
 	char	*joined;
@@ -62,55 +78,17 @@ char**	ft_tokenise(int argc, char **argv)
 	}
 	tokens = ft_split(joined, ' ');
 	free (joined);
-	if (!num_only(tokens) || !tokens)
+	if (!num_only(tokens) || !tokens) //check invalid chars
 	{
 		free_tokens(tokens);
-		return (NULL);
+		return (0);
 	}
-	return (tokens);
-}
-
-char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2)
-{
-	size_t	i;
-	size_t	j;
-	char	*temp;
-
-	temp = malloc(sizeof(char) * (len1 + len2 + 1 + 1));
-	i = 0;
-	while (i < len1)
+	if (ft_checkall(tokens)) //check overflows, next step put inside linked list
 	{
-		temp[i] = s1[i];
-		i++;
+		free_tokens(tokens);
+		return (0);
 	}
-	j = 0;
-	temp[i] = ' ';
-	i++;
-	while (j < len2)
-	{
-		temp[i + j] = s2[j];
-		j++;
-	}
-	temp[len1 + len2 + 1] = '\0';
-	return (temp);
-}
-
-char	*ft_strjoin_space(char const *s1, char const *s2)
-{
-	char	*str;
-	size_t	len1;
-	size_t	len2;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = 0;
-	while (s1[len1] != '\0')
-		len1++;
-	len2 = 0;
-	while (s2[len2] != '\0')
-		len2++;
-	str = ft_combine(len1, len2, s1, s2);
-	return (str);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -123,6 +101,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	else
+	{
 		ft_tokenise(argc, argv);
+		return (1);
 	return (0);
 }

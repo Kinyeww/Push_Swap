@@ -9,10 +9,10 @@ l_list	*find_last_node(l_list *head)
 	return (head);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	int	sign;
-	int	result;
+	long	result;
 
 	sign = 1;
 	result = 0;
@@ -30,4 +30,47 @@ int	ft_atoi(const char *nptr)
 		nptr++;
 	}
 	return (result * sign);
+}
+
+char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2)
+{
+	size_t	i;
+	size_t	j;
+	char	*temp;
+
+	temp = malloc(sizeof(char) * (len1 + len2 + 1 + 1));
+	i = 0;
+	while (i < len1)
+	{
+		temp[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	temp[i] = ' ';
+	i++;
+	while (j < len2)
+	{
+		temp[i + j] = s2[j];
+		j++;
+	}
+	temp[len1 + len2 + 1] = '\0';
+	return (temp);
+}
+
+char	*ft_strjoin_space(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	len1;
+	size_t	len2;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = 0;
+	while (s1[len1] != '\0')
+		len1++;
+	len2 = 0;
+	while (s2[len2] != '\0')
+		len2++;
+	str = ft_combine(len1, len2, s1, s2);
+	return (str);
 }
