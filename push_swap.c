@@ -22,14 +22,6 @@ void	assign_index(l_list *stack_a)
 	}
 }
 
-int	push_swap(char **argv)
-{
-	l_list	**stack_a;
-	l_list	**stack_b;
-
-	
-}
-
 void    free_tokens(char **arr)
 {
     int i;
@@ -45,7 +37,7 @@ void    free_tokens(char **arr)
     free(arr);
 }
 
-int	ft_checkall(char **arr) // convert all checked strings into integer and check no dupes and no overflow
+int	ft_checknum(char **arr) // convert all checked strings into integer and check no dupes and no overflow
 {// check overflows and then store into linked list and only check for dupes
 	int	i;
 	int	j;
@@ -62,7 +54,7 @@ int	ft_checkall(char **arr) // convert all checked strings into integer and chec
 	return (1);
 }
 
-int	ft_tokenise(int argc, char **argv)
+char**	ft_tokenise(int argc, char **argv)
 {
 	char	**tokens;
 	char	*joined;
@@ -78,17 +70,40 @@ int	ft_tokenise(int argc, char **argv)
 	}
 	tokens = ft_split(joined, ' ');
 	free (joined);
-	if (!num_only(tokens) || !tokens) //check invalid chars
+	if (!num_only(tokens) != 1 || !tokens) //check invalid chars
 	{
 		free_tokens(tokens);
 		return (0);
 	}
-	if (ft_checkall(tokens)) //check overflows, next step put inside linked list
+	return (tokens);
+}
+
+l_list	push_swap(int argc, char **argv)
+{
+	l_list	*stack_a;
+	l_list	*stack_b;
+	char	**checked;
+	int	i;
+	int	value;
+	
+	checked = ft_tokenise(argc, argv);
+	if (!checked || ft_checknum(argc, argv) != 1)
 	{
-		free_tokens(tokens);
-		return (0);
+		free_tokens(checked);
+		return (NULL);
 	}
-	return (0);
+	value = ft_atoi(checked[0]);
+	stack_a = (create_node(value));
+	i = 1;
+	while (checked[i])
+	{
+		value = ft_atoi(checked[i]);
+		add_node(&stack_a, value);
+		i++;
+	}
+	stack_a = assign_index(stack_a);
+	print_list(stack_a);
+	return (stack_a);
 }
 
 int	main(int argc, char **argv)
@@ -102,7 +117,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_tokenise(argc, argv);
+		push_swap(argc, argv);
 		return (1);
 	return (0);
 }

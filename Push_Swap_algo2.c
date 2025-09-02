@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-void	pb
+void	pa
 
-void	rr // ra + rb
+void	pb
 
 void	rrr// rra + rrb
 
