@@ -48,7 +48,7 @@ char**	ft_tokenise(int argc, char **argv)
 	}
 	tokens = ft_split(joined, ' ');
 	free (joined);
-	if (!num_only(tokens) != 1 || !tokens) //check invalid chars
+	if (num_only(tokens) != 1 || !tokens) //check invalid chars
 	{
 		free_tokens(tokens);
 		return (0);
