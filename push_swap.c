@@ -1,27 +1,5 @@
 #include "push_swap.h"
 
-void	assign_index(l_list *stack_a)
-{
-	l_list	*current;
-	l_list	*compare;
-	int		rank;
-
-	current = stack_a;
-	while (current)
-	{
-		rank = 0;
-		compare = stack_a;
-		while (compare)
-		{
-			if (current->value > compare->value)
-				rank++;
-			compare = compare->nextNode;
-		}
-		current->index = rank;
-		current = current->nextNode;
-	}
-}
-
 void    free_tokens(char **arr)
 {
     int i;
@@ -78,7 +56,7 @@ char**	ft_tokenise(int argc, char **argv)
 	return (tokens);
 }
 
-l_list	push_swap(int argc, char **argv)
+l_list	*push_swap(int argc, char **argv)
 {
 	l_list	*stack_a;
 	l_list	*stack_b;
@@ -87,13 +65,13 @@ l_list	push_swap(int argc, char **argv)
 	int	value;
 	
 	checked = ft_tokenise(argc, argv);
-	if (!checked || ft_checknum(argc, argv) != 1)
+	if (!checked || ft_checknum(checked) != 1)
 	{
 		free_tokens(checked);
 		return (NULL);
 	}
 	value = ft_atoi(checked[0]);
-	stack_a = (create_node(value));
+	stack_a = create_node(value);
 	i = 1;
 	while (checked[i])
 	{
@@ -101,7 +79,7 @@ l_list	push_swap(int argc, char **argv)
 		add_node(&stack_a, value);
 		i++;
 	}
-	stack_a = assign_index(stack_a);
+	assign_index(stack_a);
 	print_list(stack_a);
 	return (stack_a);
 }
@@ -119,5 +97,6 @@ int	main(int argc, char **argv)
 	{
 		push_swap(argc, argv);
 		return (1);
+	}
 	return (0);
 }

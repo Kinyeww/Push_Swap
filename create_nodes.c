@@ -1,4 +1,6 @@
-l_list	create_node(int value)
+#include "push_swap.h"
+
+l_list	*create_node(int value)
 {
 	l_list	*new_node;
 
@@ -11,15 +13,20 @@ l_list	create_node(int value)
 	return (new_node);
 }
 
-void	add_node(l_list *list, int value)
+void	add_node(l_list **list, int value)
 {
 	l_list *last;
 	l_list	*new;
 
-	if (*list == NULL)
-		return ;
 	new = create_node(value);
-	last = find_last_node(list);
+	if (!new)
+		return ;
+	if (*list == NULL)
+	{
+		*list = new;
+		return ;
+	}
+	last = find_last_node(*list);
 	last->nextNode = new;
 	return ;
 }
@@ -35,4 +42,26 @@ void	print_list(l_list *list)
 		list = list->nextNode;
 	}
 	printf("NULL");
+}
+
+void	assign_index(l_list *stack_a)
+{
+	l_list	*current;
+	l_list	*compare;
+	int		rank;
+
+	current = stack_a;
+	while (current)
+	{
+		rank = 0;
+		compare = stack_a;
+		while (compare)
+		{
+			if (current->value > compare->value)
+				rank++;
+			compare = compare->nextNode;
+		}
+		current->index = rank;
+		current = current->nextNode;
+	}
 }

@@ -17,3 +17,15 @@ typedef struct node
     struct node *prevNode;  
 // So from now on, instead of typing 'struct node', we can just write 'l_list'
 } l_list;
+
+int	num_only(char **str);
+void	assign_index(l_list *stack_a);
+l_list	*create_node(int value);
+void	add_node(l_list **list, int value);
+void	print_list(l_list *list);
+char	**ft_split(char const *s, char c);
+l_list	*find_last_node(l_list *head);
+long	ft_atoi(const char *nptr);
+char	*ft_strjoin_space(char const *s1, char const *s2);
+
+#endif

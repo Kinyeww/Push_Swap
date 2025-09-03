@@ -1,4 +1,6 @@
-int	ft_counter(const char *s, char c)
+#include "push_swap.h"
+
+static int	ft_counter(const char *s, char c)
 {
 	int	count;
 	int	i;
@@ -19,7 +21,7 @@ int	ft_counter(const char *s, char c)
 	return (count);
 }
 
-int	is_split(const char *s, char c, char **str, size_t *filled)
+static int	is_split(const char *s, char c, char **str, size_t *filled)
 {
 	size_t	i;
 	size_t	len;

@@ -32,7 +32,7 @@ long	ft_atoi(const char *nptr)
 	return (result * sign);
 }
 
-char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2)
+static char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;

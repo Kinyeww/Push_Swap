@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 void	ft_printerror(int n)
 {
 	if (n == 1)
