@@ -45,7 +45,7 @@ void	rb(l_list **stack_b)
 	write (1, "rb\n", 3);
 }
 
-void	rrb
+void	rrb(l_list **stack_b)
 {
 	l_list	*secondlast_node;
 	l_list	*last_node;

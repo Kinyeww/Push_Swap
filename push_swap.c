@@ -48,12 +48,32 @@ char**	ft_tokenise(int argc, char **argv)
 	}
 	tokens = ft_split(joined, ' ');
 	free (joined);
-	if (num_only(tokens) != 1 || !tokens) //check invalid chars
+	if (!tokens || num_only(tokens) != 1) //check invalid chars
 	{
 		free_tokens(tokens);
 		return (0);
 	}
 	return (tokens);
+}
+
+int	check_dupes(l_list* stack_a)
+{
+	int	cmp;
+	l_list*	start;
+
+	while(stack_a->next)
+	{
+		start = stack_a;
+		cmp = stack_a->value;
+		while (start->next)
+		{
+			start = start->next;
+			if (cmp == start->value)
+				return (0);
+		}
+		stack_a = stack_a->next;
+	}
+	return (1);
 }
 
 l_list	*push_swap(int argc, char **argv)
@@ -65,22 +85,28 @@ l_list	*push_swap(int argc, char **argv)
 	int	value;
 	
 	checked = ft_tokenise(argc, argv);
-	if (!checked || ft_checknum(checked) != 1)
+	if (!checked || ft_checknum(checked) != 1) //check overflow
 	{
 		free_tokens(checked);
 		return (NULL);
 	}
 	value = ft_atoi(checked[0]);
-	stack_a = create_node(value);
+	stack_a = create_node(value); //initialise node
 	i = 1;
-	while (checked[i])
+	while (checked[i]) // start parsing value into nodes
 	{
 		value = ft_atoi(checked[i]);
 		add_node(&stack_a, value);
 		i++;
 	}
+	if (!(check_dupes(stack_a))) //check for dupes
+	{
+		free(stack_a);
+		return (NULL);
+	}
 	assign_index(stack_a);
 	print_list(stack_a);
+	
 	return (stack_a);
 }
 

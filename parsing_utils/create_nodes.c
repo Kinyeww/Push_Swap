@@ -36,7 +36,7 @@ void	print_list(l_list *list)
 	int	i;
 
 	i = 0;
-	while (*list != NULL)
+	while (list != NULL)
 	{
 		printf("%d. ->%d \n", list->index, list->value);
 		list = list->nextNode;
