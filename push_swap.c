@@ -105,9 +105,16 @@ l_list	*push_swap(int argc, char **argv)
 		return (NULL);
 	}
 	assign_index(stack_a);
-	print_list(stack_a);
-	
+	print_list(stack_a); // checking only
+	//after checking dupes, arguments are in the list with int index and int value
+	//my next step is to sort by using the ranks
+	radix_sort(&stack_a, &stack_b);
 	return (stack_a);
+}
+
+void	radix_sort(l_list** stack_a, l_list** stack_b)
+{
+	
 }
 
 int	main(int argc, char **argv)
@@ -121,8 +128,11 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		push_swap(argc, argv);
-		return (1);
+		if (!(push_swap(argc, argv)))
+		{
+			write (1, "error\n", 6);
+			return (1);
+		}
 	}
 	return (0);
 }
