@@ -65,3 +65,22 @@ void	assign_index(l_list *stack_a)
 		current = current->nextNode;
 	}
 }
+
+int	find_max_num(l_list* stack_a)
+{
+	int	rank;
+	int	num;
+
+	rank = stack_a->index;
+	num = stack_a->value;
+	while (stack_a)
+	{
+		if (stack_a->index > rank)
+		{
+			rank = stack_a->index;
+			num = stack_a->value;
+		}
+		stack_a = stack_a->nextNode;
+	}
+	return (num);
+}
