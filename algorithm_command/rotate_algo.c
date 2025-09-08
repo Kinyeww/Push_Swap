@@ -1,6 +1,8 @@
 #include "push_swap.h"
 
-void	ra(l_list **stack_a) a b c d e \0 to b c d e a \0 
+void	rotate
+
+void	rotate_a(l_list **stack_a) a b c d e \0 to b c d e a \0 
 {
 	l_list	*first_node;
 	l_list	*last_node;

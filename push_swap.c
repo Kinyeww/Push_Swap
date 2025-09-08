@@ -114,7 +114,32 @@ l_list	*push_swap(int argc, char **argv)
 
 void	radix_sort(l_list** stack_a, l_list** stack_b)
 {
-	
+	int	max_num;
+	int	max_bit;
+	int	i;
+	l_list**	head;
+
+	max_num = find_max_num(*stack_a);
+	max_bit = 0;
+	while (max_num >> max_bit != 0)
+		max_bit++;
+	i = 0;
+	head = stack_a;
+	while (i < max_bit)
+	{
+		stack_a = head;
+		while (stack_a)
+		{
+			if (((stack_a->index >> i) & 1) = 1)
+				rotate_a(stack_a);
+			else
+				push(stack_a, stack_b);
+			stack_a = stack_a->nextNode;
+		}
+		while (stack_b)
+			push(stack_b, stack_a);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)

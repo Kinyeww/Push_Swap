@@ -21,6 +21,21 @@ static int	ft_counter(const char *s, char c)
 	return (count);
 }
 
+static char*	ft_getstr(const char *s, int word_position, int word_size)
+{
+	int	i;
+	char* str[word_size];
+
+	i = 0;
+	while (i < word_size)
+	{
+		str[i] = s[word_position];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 static int	is_split(const char *s, char c, char **str, size_t *filled)
 {
 	size_t	i;
@@ -39,7 +54,7 @@ static int	is_split(const char *s, char c, char **str, size_t *filled)
 				s++;
 				len++;
 			}
-			str[i] = ft_substr(s - len, 0, len);
+			str[i] = ft_getstr(s, s - len, len);
 			if (!str[i])
 				return (0);
 			(*filled)++;
@@ -70,3 +85,4 @@ char	**ft_split(char const *s, char c)
 	}
 	return (str);
 }
+
