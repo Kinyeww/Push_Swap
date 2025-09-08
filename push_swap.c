@@ -114,7 +114,11 @@ l_list	*push_swap(int argc, char **argv)
 
 void	radix_sort(l_list** stack_a, l_list** stack_b)
 {
-	
+	int	max_bit;
+	int	max_num;
+
+	max_num = find_highest_num(*stack_a);
+	max_bit = 
 }
 
 int	main(int argc, char **argv)
