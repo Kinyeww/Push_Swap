@@ -106,8 +106,6 @@ l_list	*push_swap(int argc, char **argv)
 	}
 	assign_index(stack_a);
 	print_list(stack_a); // checking only
-	//after checking dupes, arguments are in the list with int index and int value
-	//my next step is to sort by using the ranks
 	radix_sort(&stack_a, &stack_b);
 	return (stack_a);
 }
@@ -117,7 +115,7 @@ void	radix_sort(l_list** stack_a, l_list** stack_b)
 	int	max_num;
 	int	max_bit;
 	int	i;
-	l_list**	head;
+	l_list*	head;
 
 	max_num = find_max_num(*stack_a);
 	max_bit = 0;
@@ -127,17 +125,17 @@ void	radix_sort(l_list** stack_a, l_list** stack_b)
 	head = stack_a;
 	while (i < max_bit)
 	{
-		stack_a = head;
+		stack_a = *head;
 		while (stack_a)
 		{
-			if (((stack_a->index >> i) & 1) = 1)
+			if (((stack_a->index >> i) & 1) == 1)
 				rotate_a(stack_a);
 			else
-				push(stack_a, stack_b);
+				push_to_b(stack_a, stack_b);
 			stack_a = stack_a->nextNode;
 		}
 		while (stack_b)
-			push(stack_b, stack_a);
+			push_to_a(stack_b, stack_a);
 		i++;
 	}
 }
