@@ -1,21 +1,22 @@
-NAME = push_swap.a
-CC = cc
+NAME = push_swap
+CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 AR = ar rcs $(NAME)
-SRC = \
-	checker.c	create_nodes.c	ft_split.c	Push_Swap_algo2.c	push_swap_utils1.c	push_swap.c	rotate_algo.c
+INC_DIR = parsing_utils
+INC_ALG = algorithm_command
+SRC = $(*.c parsing_utils/*.c algorithm_command/*.c)
+
 OBJS := $(SRC:.c=.o)
-INC_DIR = .
 CPPFLAGS = -I$(INC_DIR)
 RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(OBJS)
+$(NAME): $(OBJS) 
+			$(CC) $(CCFLAGS) $(OBJS)
 
 %.o: %.c
-	$(CC) $(CPPFLAGS) $(CCFLAGS) -c $< -o %@
+	$(CC) $(CCFLAGS) -c $< -o %@
 
 clean:
 	$(RM) *.o

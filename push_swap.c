@@ -61,17 +61,17 @@ int	check_dupes(l_list* stack_a)
 	int	cmp;
 	l_list*	start;
 
-	while(stack_a->next)
+	while(stack_a->nextNode)
 	{
 		start = stack_a;
 		cmp = stack_a->value;
-		while (start->next)
+		while (start->nextNode)
 		{
-			start = start->next;
+			start = start->nextNode;
 			if (cmp == start->value)
 				return (0);
 		}
-		stack_a = stack_a->next;
+		stack_a = stack_a->nextNode;
 	}
 	return (1);
 }
@@ -122,17 +122,16 @@ void	radix_sort(l_list** stack_a, l_list** stack_b)
 	while (max_num >> max_bit != 0)
 		max_bit++;
 	i = 0;
-	head = stack_a;
 	while (i < max_bit)
 	{
-		stack_a = *head;
-		while (stack_a)
+		head = *stack_a;
+		while (head)
 		{
-			if (((stack_a->index >> i) & 1) == 1)
+			if (((head->index >> i) & 1) == 1)
 				rotate_a(stack_a);
 			else
 				push_to_b(stack_a, stack_b);
-			stack_a = stack_a->nextNode;
+			head = head->nextNode;
 		}
 		while (stack_b)
 			push_to_a(stack_b, stack_a);
