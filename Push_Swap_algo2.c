@@ -7,7 +7,7 @@ void	push_to_a(l_list** stack_b, l_list** stack_a) // b to a
     if (*stack_b == NULL)
         return ;
     head_b = *stack_b;
-    *stack_b = (*stack_b)->nextNode;
+    *stack_b = (*stackgit _b)->nextNode;
     head_b->nextNode = *stack_a;
     *stack_a = head_b;
 }
