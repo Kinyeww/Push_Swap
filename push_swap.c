@@ -43,13 +43,18 @@ char**	ft_tokenise(int argc, char **argv)
 	tokens = NULL;
 	while (i < argc)
 	{
+		printf("segfault");
 		joined = ft_strjoin_space(joined, argv[i]);
 		i++;
+		printf("%d", i);
 	}
+	printf("%s", joined);
 	tokens = ft_split(joined, ' ');
+	printf("%s", tokens);
 	free (joined);
 	if (!tokens || num_only(tokens) != 1) //check invalid chars
 	{
+		printf("gg\n");
 		free_tokens(tokens);
 		return (0);
 	}
@@ -74,40 +79,6 @@ int	check_dupes(l_list* stack_a)
 		stack_a = stack_a->nextNode;
 	}
 	return (1);
-}
-
-l_list	*push_swap(int argc, char **argv)
-{
-	l_list	*stack_a;
-	l_list	*stack_b;
-	char	**checked;
-	int	i;
-	int	value;
-	
-	checked = ft_tokenise(argc, argv);
-	if (!checked || ft_checknum(checked) != 1) //check overflow
-	{
-		free_tokens(checked);
-		return (NULL);
-	}
-	value = ft_atoi(checked[0]);
-	stack_a = create_node(value); //initialise node
-	i = 1;
-	while (checked[i]) // start parsing value into nodes
-	{
-		value = ft_atoi(checked[i]);
-		add_node(&stack_a, value);
-		i++;
-	}
-	if (!(check_dupes(stack_a))) //check for dupes
-	{
-		free(stack_a);
-		return (NULL);
-	}
-	assign_index(stack_a);
-	print_list(stack_a); // checking only
-	radix_sort(&stack_a, &stack_b);
-	return (stack_a);
 }
 
 void	radix_sort(l_list** stack_a, l_list** stack_b)
@@ -139,6 +110,44 @@ void	radix_sort(l_list** stack_a, l_list** stack_b)
 	}
 }
 
+l_list	*push_swap(int argc, char **argv)
+{
+	l_list	*stack_a;
+	l_list	*stack_b;
+	char	**checked;
+	int	i;
+	int	value;
+	
+	printf("passed");
+	checked = ft_tokenise(argc, argv);
+	if (!checked || ft_checknum(checked) != 1) //check overflow and invalid
+	{
+		printf("checked: %s", checked);
+		free_tokens(checked);
+		return (NULL);
+		printf("cheked failed");
+	}
+	printf("passed");
+	value = ft_atoi(checked[0]);
+	stack_a = create_node(value); //initialise node
+	i = 1;
+	while (checked[i]) // start parsing value into nodes
+	{
+		value = ft_atoi(checked[i]);
+		add_node(&stack_a, value);
+		i++;
+	}
+	if (!(check_dupes(stack_a))) //check for dupes
+	{
+		free(stack_a);
+		return (NULL);
+	}
+	assign_index(stack_a);
+	print_list(stack_a); // checking only
+	radix_sort(&stack_a, &stack_b);
+	return (stack_a);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**token;
@@ -152,7 +161,7 @@ int	main(int argc, char **argv)
 	{
 		if (!(push_swap(argc, argv)))
 		{
-			write (1, "error\n", 6);
+			write (1, "else error\n", 11);
 			return (1);
 		}
 	}

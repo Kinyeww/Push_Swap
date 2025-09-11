@@ -1,4 +1,4 @@
-#include "../push_swap.h"
+#include "push_swap.h"
 
 static int	ft_counter(const char *s, char c)
 {

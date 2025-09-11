@@ -1,4 +1,4 @@
-#include "../push_swap.h"
+#include "push_swap.h"
 
 l_list	*find_last_node(l_list *head)
 {
@@ -32,7 +32,7 @@ long	ft_atoi(const char *nptr)
 	return (result * sign);
 }
 
-static char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2)
+char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -54,6 +54,7 @@ static char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2
 		j++;
 	}
 	temp[len1 + len2 + 1] = '\0';
+	printf("temp :%s", temp);
 	return (temp);
 }
 
@@ -87,11 +88,17 @@ int	num_only(char **str) //handle not integer, like "--1" "w" "-" ""
 		if (str[i][j] == '-' || str[i][j] == '+')
 			j++;
 		if (str[i][j] == '\0')
+		{
+			printf("hit null");
 			return (0);
+		}
 		while (str[i][j])
 		{
 			if (str[i][j] < '0' || str[i][j] > '9')
+			{
+				printf("not num");
 				return (0);
+			}
 			j++;
 		}
 		i++;
