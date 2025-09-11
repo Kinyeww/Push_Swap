@@ -64,8 +64,10 @@ char	*ft_strjoin_space(char const *s1, char const *s2)
 	size_t	len1;
 	size_t	len2;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
 	len1 = 0;
 	while (s1[len1] != '\0')
 		len1++;

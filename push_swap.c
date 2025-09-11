@@ -43,7 +43,6 @@ char**	ft_tokenise(int argc, char **argv)
 	tokens = NULL;
 	while (i < argc)
 	{
-		printf("segfault");
 		joined = ft_strjoin_space(joined, argv[i]);
 		i++;
 		printf("%d", i);
