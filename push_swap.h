@@ -32,5 +32,6 @@ int		find_max_num(l_list* stack_a);
 void	rotate_a(l_list **stack_a);
 void	push_to_a(l_list** stack_b, l_list** stack_a);
 void	push_to_b(l_list** stack_a, l_list** stack_b);
+int	list_size(l_list* stack_a);
 
 #endif

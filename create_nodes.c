@@ -38,10 +38,10 @@ void	print_list(l_list *list)
 	i = 0;
 	while (list != NULL)
 	{
-		printf("%d. ->%d \n", list->index, list->value);
+		printf("num = %d, rank = %d\n", list->value, list->index);
 		list = list->nextNode;
 	}
-	printf("NULL");
+	printf("done printing list\n");
 }
 
 void	assign_index(l_list *stack_a)
@@ -83,4 +83,17 @@ int	find_max_num(l_list* stack_a)
 		stack_a = stack_a->nextNode;
 	}
 	return (num);
+}
+
+int	list_size(l_list* stack_a)
+{
+	int	i;
+
+	i = 0;
+	while (stack_a)
+	{
+		stack_a = stack_a->nextNode;
+		i++;
+	}
+	return (i);
 }

@@ -45,15 +45,19 @@ char**	ft_tokenise(int argc, char **argv)
 	{
 		joined = ft_strjoin_space(joined, argv[i]);
 		i++;
-		printf("%d", i);
 	}
-	printf("%s", joined);
+	printf("joined = %s\n", joined);
 	tokens = ft_split(joined, ' ');
-	printf("%s", tokens);
+	int	check = 0;
+	while (tokens[check])
+	{
+		printf("ft_split = %s\n", tokens[check]);
+		check++;
+	}
 	free (joined);
 	if (!tokens || num_only(tokens) != 1) //check invalid chars
 	{
-		printf("gg\n");
+		printf("invalid char detected\n");
 		free_tokens(tokens);
 		return (0);
 	}
@@ -85,28 +89,32 @@ void	radix_sort(l_list** stack_a, l_list** stack_b)
 	int	max_num;
 	int	max_bit;
 	int	i;
-	l_list*	head;
+	int	j;
+	int	max_size;
 
+	printf("radix sort started\n");
 	max_num = find_max_num(*stack_a);
 	max_bit = 0;
+	max_size = list_size(*stack_a);
 	while (max_num >> max_bit != 0)
 		max_bit++;
 	i = 0;
 	while (i < max_bit)
 	{
-		head = *stack_a;
-		while (head)
+		j = 0;
+		while (j < max_size)
 		{
-			if (((head->index >> i) & 1) == 1)
+			if ((((*stack_a)->index >> i) & 1) == 1)
 				rotate_a(stack_a);
 			else
 				push_to_b(stack_a, stack_b);
-			head = head->nextNode;
+			j++;
 		}
-		while (stack_b)
+		while (*stack_b)
 			push_to_a(stack_b, stack_a);
 		i++;
 	}
+	printf("radix sort ended\n");
 }
 
 l_list	*push_swap(int argc, char **argv)
@@ -117,16 +125,14 @@ l_list	*push_swap(int argc, char **argv)
 	int	i;
 	int	value;
 	
-	printf("passed");
 	checked = ft_tokenise(argc, argv);
 	if (!checked || ft_checknum(checked) != 1) //check overflow and invalid
 	{
-		printf("checked: %s", checked);
+		printf("overflow detected\n");
 		free_tokens(checked);
 		return (NULL);
-		printf("cheked failed");
 	}
-	printf("passed");
+	printf("atoi now\n");
 	value = ft_atoi(checked[0]);
 	stack_a = create_node(value); //initialise node
 	i = 1;
@@ -143,6 +149,7 @@ l_list	*push_swap(int argc, char **argv)
 	}
 	assign_index(stack_a);
 	print_list(stack_a); // checking only
+	stack_b = NULL;
 	radix_sort(&stack_a, &stack_b);
 	return (stack_a);
 }
