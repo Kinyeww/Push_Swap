@@ -54,7 +54,6 @@ char	*ft_combine(size_t len1, size_t len2, char const *s1, char const *s2)
 		j++;
 	}
 	temp[len1 + len2 + 1] = '\0';
-	printf("temp :%s", temp);
 	return (temp);
 }
 

@@ -86,17 +86,17 @@ int	check_dupes(l_list* stack_a)
 
 void	radix_sort(l_list** stack_a, l_list** stack_b)
 {
-	int	max_num;
+	int	max_rank;
 	int	max_bit;
 	int	i;
 	int	j;
 	int	max_size;
 
 	printf("radix sort started\n");
-	max_num = find_max_num(*stack_a);
+	max_rank = find_max_rank(*stack_a);
 	max_bit = 0;
 	max_size = list_size(*stack_a);
-	while (max_num >> max_bit != 0)
+	while (max_rank >> max_bit != 0)
 		max_bit++;
 	i = 0;
 	while (i < max_bit)
@@ -114,7 +114,7 @@ void	radix_sort(l_list** stack_a, l_list** stack_b)
 			push_to_a(stack_b, stack_a);
 		i++;
 	}
-	printf("radix sort ended\n");
+	printf("radix sort ended\n i = %d", i);
 }
 
 l_list	*push_swap(int argc, char **argv)

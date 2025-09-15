@@ -28,7 +28,7 @@ l_list	*find_last_node(l_list *head);
 long	ft_atoi(const char *nptr);
 char	*ft_strjoin_space(char const *s1, char const *s2);
 void	radix_sort(l_list** stack_a, l_list** stack_b);
-int		find_max_num(l_list* stack_a);
+int		find_max_rank(l_list* stack_a);
 void	rotate_a(l_list **stack_a);
 void	push_to_a(l_list** stack_b, l_list** stack_a);
 void	push_to_b(l_list** stack_a, l_list** stack_b);
